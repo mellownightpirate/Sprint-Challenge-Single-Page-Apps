@@ -2,6 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import CharacterCard from "./CharacterCard";
+import styled from "styled-components";
+
+const H2 = styled.header`
+  margin-top: 10px;
+  font-family: "Comfortaa", cursive;
+  font-weight: bold;
+`;
+
+const Div = styled.div`
+  /* flex-wrap: wrap;
+  justify-content: space-evenly; */
+`;
+
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
@@ -22,12 +35,12 @@ export default function CharacterList() {
 
   return (
     <section className="character-list">
-      <div>
-        <h2>Characters</h2>
+      <Div>
+        <H2>Characters</H2>
         <Link className="nav-buttons" to={"/"}>
           Back
         </Link>
-      </div>
+      </Div>
       {characters.map(chara => {
         return <CharacterCard key={chara.id} character={chara} />;
       })}
