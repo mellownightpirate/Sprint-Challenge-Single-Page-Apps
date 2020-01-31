@@ -19,6 +19,9 @@ export default function WelcomePage() {
         <Link className="nav-buttons" to={"/characters"}>
           Characters
         </Link>
+        <Link className="nav-buttons" to={"/locations"}>
+          Locations
+        </Link>
       </header>
     </Section>
   );
