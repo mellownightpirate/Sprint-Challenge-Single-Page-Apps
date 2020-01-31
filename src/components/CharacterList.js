@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import CharacterCard from "./CharacterCard";
 import styled from "styled-components";
+import SearchForm from "./SearchForm";
 
 const H2 = styled.header`
   margin-top: 10px;
@@ -19,6 +20,10 @@ const Div = styled.div`
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
   const [characters, setCharacters] = useState([]);
+  const [filterData, updateData] = useState([]);
+  const search = characterList => {
+    updateData(characterList);
+  };
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
@@ -26,6 +31,7 @@ export default function CharacterList() {
       .then(response => {
         console.log(response.data.results);
         setCharacters(response.data.results);
+        updateData(response.data.results);
       })
       .catch(e => console.log(e))
       .finally(() => {
@@ -36,12 +42,13 @@ export default function CharacterList() {
   return (
     <section className="character-list">
       <Div>
-        <H2>Characters</H2>
+        <H2>Search Characters</H2>
+        <SearchForm search={search} characters={characters} />
         <Link className="nav-buttons" to={"/"}>
           Back
         </Link>
       </Div>
-      {characters.map(chara => {
+      {filterData.map(chara => {
         return <CharacterCard key={chara.id} character={chara} />;
       })}
     </section>

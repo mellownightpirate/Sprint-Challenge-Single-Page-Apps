@@ -21,6 +21,8 @@ export default function CharacterCard(props) {
     width: 200px;
     height: 200px;
     border-radius: 100px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
   `;
 
   const Bio = styled.div`
